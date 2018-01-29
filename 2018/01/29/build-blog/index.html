@@ -79,17 +79,19 @@
 
 
 
-<meta name="description" content="在我们博客写一篇新文章">
+<meta name="description" content="利用 gitPage 和 hexo 搭建一个博客">
 <meta property="og:type" content="article">
-<meta property="og:title" content="怎么在这里写文章">
-<meta property="og:url" content="http://yoursite.com/2018/01/25/write-new-article/index.html">
+<meta property="og:title" content="gitPage + hexo 搭建博客">
+<meta property="og:url" content="http://yoursite.com/2018/01/29/build-blog/index.html">
 <meta property="og:site_name" content="LCSC">
-<meta property="og:description" content="在我们博客写一篇新文章">
+<meta property="og:description" content="利用 gitPage 和 hexo 搭建一个博客">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-29T02:11:25.793Z">
+<meta property="og:image" content="http://yoursite.com/2018/01/29/build-blog/upload/build-blog/name-gitpage.png">
+<meta property="og:updated_time" content="2018-01-29T07:23:26.483Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="怎么在这里写文章">
-<meta name="twitter:description" content="在我们博客写一篇新文章">
+<meta name="twitter:title" content="gitPage + hexo 搭建博客">
+<meta name="twitter:description" content="利用 gitPage 和 hexo 搭建一个博客">
+<meta name="twitter:image" content="http://yoursite.com/2018/01/29/build-blog/upload/build-blog/name-gitpage.png">
 
 
 
@@ -119,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/25/write-new-article/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/29/build-blog/"/>
 
 
 
 
 
-  <title>怎么在这里写文章 | LCSC</title>
+  <title>gitPage + hexo 搭建博客 | LCSC</title>
   
 
 
@@ -276,7 +278,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/25/write-new-article/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/29/build-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="前端部">
@@ -293,7 +295,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">怎么在这里写文章</h1>
+          <h1 class="post-title" itemprop="name headline">gitPage + hexo 搭建博客</h1>
         
 
         <div class="post-meta">
@@ -305,8 +307,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-25T11:41:03+08:00">
-                2018-01-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-29T10:16:31+08:00">
+                2018-01-29
               </time>
             
 
@@ -324,8 +326,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/01/25/write-new-article/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/01/25/write-new-article/" itemprop="commentsCount"></span>
+                <a href="/2018/01/29/build-blog/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/01/29/build-blog/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -353,33 +355,36 @@
       
 
       
-        <p>在我们博客写一篇新文章</p>
+        <p>利用 gitPage 和 hexo 搭建一个博客</p>
 <a id="more"></a>
-<h1 id="拉取blog"><a href="#拉取blog" class="headerlink" title="拉取blog"></a>拉取blog</h1><ol>
-<li><p>在你觉得喜欢的目录下，执行命令克隆 blog 代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/LCSC-frontend/blog.git</span><br></pre></td></tr></table></figure>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="Github-Pages"><a href="#Github-Pages" class="headerlink" title="Github Pages"></a>Github Pages</h3><p>Github Pages 是一个可用于托管静态页面的平台，站点免费托管在 github 上，使用 gitPage 来放我们的页面时，首先要在 github 建立相应的仓库，并且仓库名命名方式为： username.github.io</p>
+<p><img src="upload/build-blog/name-gitpage.png" alt="仓库取名"></p>
+<p>这个时候我们放在该仓库中的静态页面可以通过 https：//username.github.io 去打开，比如这里是： <a href="https://lcsc-frontend.github.io/" target="_blank" rel="noopener">https://lcsc-frontend.github.io/</a></p>
+<h3 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h3><p>hexo，一款基于 node 的博客框架，一般使用 markdown 来解析文章，比较方便地根据主题布局和文章生成静态页面。</p>
+<p>也就是说，我们可以利用 hexo 这个框架来生成博客的静态页面，然后部署到 gitPage 上，通过 username.github.io 来访问我们的博客。</p>
+<h2 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h2><ol>
+<li><p>搭建前先要有 node 和 git 环境</p>
 </li>
-<li><p>进入 blog 目录，安装相应的依赖包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd blog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<li><p>在 github 上新建一个仓库，名为 username.github.io。（这里的 username 必须是你的用户名，按这种命名方式的仓库是一个“特别”的仓库，可以通过 <a href="https://username.github.io/" target="_blank" rel="noopener">https://username.github.io/</a> 访问）</p>
 </li>
-</ol>
-<h1 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a>写文章</h1><ol>
-<li>在 blog/source/_posts/ 中新建 md 文件，于此处编写文章</li>
-<li><p>执行下面命令，可在本地进行更改，并在 localhost：4000 预览你修改的效果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<li><p>安装 hexo，找一个合适的地方，执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line"></span><br><span class="line">hexo init blog </span><br><span class="line">cd blog</span><br><span class="line">npm install // 安装相关的依赖</span><br><span class="line">hexo g // 生成静态文件，可以看到 blog 中多了几个文件夹 (完整的命令是： hexo generate )</span><br><span class="line">hexo s // 开启本地服务 (完整的命令是： hexo server )</span><br><span class="line">// 执行了 hexo s 之后，可以打开 localhost:4000 看到当前的博客生成的样子 （此时使用的是默认主题）</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>写完之后执行命令生成静态文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<li><p>更改主题<br>hexo 有很多人贡献了主题，比如现在我们想把主题更改为 nexT ，首先克隆 nexT 代码至 /blig/themes/next 目录 （如果要把博客主题也放在 github 上面，可先看看后面“将 blog 相关 hexo 代码放在 github 上”）。接着，我们需要将主题从默认的 landscape 改为我们想要的 next</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next // 可以看到 themes 中有了 next 目录，其中是其相应的布局等文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 找到 blog/_config.yml 配置文件，更改：</span><br><span class="line"># theme: landscape</span><br><span class="line">theme: next</span><br><span class="line"># 主题安装完成，最好先使用 hexo clean 先来清楚 hexo 缓存，然后再 hexo g，hexo d</span><br><span class="line"># 同时，其他主题相关配置都可以在 themes/next/_config.yml 中进行修改。布局等则在 theme 中相关 layout 文件中进行更改，如果你需要的话</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>将新生成的文件部署到 gitPage 上：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将修改 push 到 github 上：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;xxx&quot;</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>打开相应地址 <a href="https://lcsc-frontend.github.io/" target="_blank" rel="noopener">我们的博客</a> 即可看到最新的修改。（如果没有，刷新一下试试）</p>
+<li><p>将 hexo 部署到 gitPage。hexo 可以部署到不同的平台，这里我们是将它部署到 gitPage 上，首先需要修改 blog/_cofig.yml 文件中的 deploy ，然后安装一个插件 hexo-deployer-git </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/username/username.github.io.git</span><br><span class="line">  branch: master</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 之后执行之前说的命令：</span><br><span class="line">hexo d // 这个时候访问 https://username.github.io/ 可以看到你的博客页面</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<h2 id="将-blog-相关-hexo-代码放在-github-上"><a href="#将-blog-相关-hexo-代码放在-github-上" class="headerlink" title="将 blog 相关 hexo 代码放在 github 上"></a>将 blog 相关 hexo 代码放在 github 上</h2><p>在 github 上新建一个仓库，我本来以为 push 上去就 okay 了，结果似乎没有那么顺利。发现新的主题 next 没有被 push 上去，ε=(´ο｀*)))唉。怎么处理这个问题？使用 git subtree。将 themes/next 这个主题作为子项目合并到项目中，变成其的一个子目录。</p>
+<p>（1） 先 fork 你想要的主题到你的 github 账号下，比如我还是 fork next。<br>（2） 当然，还是要先将 blog 项目 push 到 github 上去<br>（3） 如果你之前就把 next 放在 blog 里了，就先 remove，并把删除记录提交上去：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;delete next&quot;</span><br><span class="line">git push</span><br></pre></td></tr></table></figure></p>
+<p>（4） 在主项目 blog 中，将子项目 next 添加到远程库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add -f next https://github.com/username/hexo-theme-next.git</span><br><span class="line">git subtree add --prefix=themes/next next master --squash</span><br></pre></td></tr></table></figure></p>
+<p>拉取子项目文件夹：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fetch next master</span><br><span class="line">git subtree pull --prefix=themes/next next master --squash</span><br></pre></td></tr></table></figure></p>
+<p>这个时候可以在本地看到 next 目录<br>将子目录 push 到远程仓库（子项目）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git subtree push --prefix=themes/next next master</span><br></pre></td></tr></table></figure></p>
+<p>将修改 push 到主项目：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></figure></p>
+<p>这个时候回到 github ，在主项目中看，可以找到 themes/next 目录。</p>
+<h2 id="为博客添加文章评论功能"><a href="#为博客添加文章评论功能" class="headerlink" title="为博客添加文章评论功能"></a>为博客添加文章评论功能</h2><p>写累了，我要歇一歇</p>
 
       
     </div>
@@ -404,15 +409,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/01/25/npm-packagelock/" rel="next" title="理解 npm5 中的 package-lock.json 文件">
+                <i class="fa fa-chevron-left"></i> 理解 npm5 中的 package-lock.json 文件
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/25/npm-packagelock/" rel="prev" title="理解 npm5 中的 package-lock.json 文件">
-                理解 npm5 中的 package-lock.json 文件 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -541,7 +546,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#拉取blog"><span class="nav-number">1.</span> <span class="nav-text">拉取blog</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写文章"><span class="nav-number">2.</span> <span class="nav-text">写文章</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Github-Pages"><span class="nav-number">1.1.</span> <span class="nav-text">Github Pages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo"><span class="nav-number">1.2.</span> <span class="nav-text">hexo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建过程"><span class="nav-number">2.</span> <span class="nav-text">搭建过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将-blog-相关-hexo-代码放在-github-上"><span class="nav-number">3.</span> <span class="nav-text">将 blog 相关 hexo 代码放在 github 上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为博客添加文章评论功能"><span class="nav-number">4.</span> <span class="nav-text">为博客添加文章评论功能</span></a></li></ol></div>
             
 
           </div>
