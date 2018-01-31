@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT, LCSC, js, 前端" />
+  <meta name="keywords" content="hexo,git pages,blog,git comment," />
 
 
 
@@ -80,18 +80,22 @@
 
 
 <meta name="description" content="利用 gitPage 和 hexo 搭建一个博客">
+<meta name="keywords" content="hexo,git pages,blog,git comment">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gitPage + hexo 搭建博客">
 <meta property="og:url" content="http://yoursite.com/2018/01/29/build-blog/index.html">
 <meta property="og:site_name" content="LCSC">
 <meta property="og:description" content="利用 gitPage 和 hexo 搭建一个博客">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/01/29/build-blog/upload/build-blog/name-gitpage.png">
-<meta property="og:updated_time" content="2018-01-29T07:23:26.483Z">
+<meta property="og:image" content="http://yoursite.com/upload/build-blog/name-gitpage.PNG">
+<meta property="og:image" content="http://yoursite.com/upload/build-blog/new-oauth-app.PNG">
+<meta property="og:image" content="http://yoursite.com/upload/build-blog/register-app.PNG">
+<meta property="og:image" content="http://yoursite.com/upload/build-blog/register-success.PNG">
+<meta property="og:updated_time" content="2018-01-31T03:04:00.947Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gitPage + hexo 搭建博客">
 <meta name="twitter:description" content="利用 gitPage 和 hexo 搭建一个博客">
-<meta name="twitter:image" content="http://yoursite.com/2018/01/29/build-blog/upload/build-blog/name-gitpage.png">
+<meta name="twitter:image" content="http://yoursite.com/upload/build-blog/name-gitpage.PNG">
 
 
 
@@ -358,7 +362,7 @@
         <p>利用 gitPage 和 hexo 搭建一个博客</p>
 <a id="more"></a>
 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="Github-Pages"><a href="#Github-Pages" class="headerlink" title="Github Pages"></a>Github Pages</h3><p>Github Pages 是一个可用于托管静态页面的平台，站点免费托管在 github 上，使用 gitPage 来放我们的页面时，首先要在 github 建立相应的仓库，并且仓库名命名方式为： username.github.io</p>
-<p><img src="upload/build-blog/name-gitpage.png" alt="仓库取名"></p>
+<p><img src="/upload/build-blog/name-gitpage.PNG" alt="仓库取名"></p>
 <p>这个时候我们放在该仓库中的静态页面可以通过 https：//username.github.io 去打开，比如这里是： <a href="https://lcsc-frontend.github.io/" target="_blank" rel="noopener">https://lcsc-frontend.github.io/</a></p>
 <h3 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h3><p>hexo，一款基于 node 的博客框架，一般使用 markdown 来解析文章，比较方便地根据主题布局和文章生成静态页面。</p>
 <p>也就是说，我们可以利用 hexo 这个框架来生成博客的静态页面，然后部署到 gitPage 上，通过 username.github.io 来访问我们的博客。</p>
@@ -378,13 +382,23 @@
 </li>
 </ol>
 <h2 id="将-blog-相关-hexo-代码放在-github-上"><a href="#将-blog-相关-hexo-代码放在-github-上" class="headerlink" title="将 blog 相关 hexo 代码放在 github 上"></a>将 blog 相关 hexo 代码放在 github 上</h2><p>在 github 上新建一个仓库，我本来以为 push 上去就 okay 了，结果似乎没有那么顺利。发现新的主题 next 没有被 push 上去，ε=(´ο｀*)))唉。怎么处理这个问题？使用 git subtree。将 themes/next 这个主题作为子项目合并到项目中，变成其的一个子目录。</p>
-<p>（1） 先 fork 你想要的主题到你的 github 账号下，比如我还是 fork next。<br>（2） 当然，还是要先将 blog 项目 push 到 github 上去<br>（3） 如果你之前就把 next 放在 blog 里了，就先 remove，并把删除记录提交上去：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;delete next&quot;</span><br><span class="line">git push</span><br></pre></td></tr></table></figure></p>
-<p>（4） 在主项目 blog 中，将子项目 next 添加到远程库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add -f next https://github.com/username/hexo-theme-next.git</span><br><span class="line">git subtree add --prefix=themes/next next master --squash</span><br></pre></td></tr></table></figure></p>
+<p>先 fork 你想要的主题到你的 github 账号下，比如我还是 fork next。<br>当然，还是要先将 blog 项目 push 到 github 上去<br>如果你之前就把 next 放在 blog 里了，就先 remove，并把删除记录提交上去：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;delete next&quot;</span><br><span class="line">git push</span><br></pre></td></tr></table></figure></p>
+<p>在主项目 blog 中，将子项目 next 添加到远程库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add -f next https://github.com/username/hexo-theme-next.git</span><br><span class="line">git subtree add --prefix=themes/next next master --squash</span><br></pre></td></tr></table></figure></p>
 <p>拉取子项目文件夹：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fetch next master</span><br><span class="line">git subtree pull --prefix=themes/next next master --squash</span><br></pre></td></tr></table></figure></p>
 <p>这个时候可以在本地看到 next 目录<br>将子目录 push 到远程仓库（子项目）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git subtree push --prefix=themes/next next master</span><br></pre></td></tr></table></figure></p>
 <p>将修改 push 到主项目：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></figure></p>
 <p>这个时候回到 github ，在主项目中看，可以找到 themes/next 目录。</p>
-<h2 id="为博客添加文章评论功能"><a href="#为博客添加文章评论功能" class="headerlink" title="为博客添加文章评论功能"></a>为博客添加文章评论功能</h2><p>写累了，我要歇一歇</p>
+<h2 id="为博客添加文章评论功能"><a href="#为博客添加文章评论功能" class="headerlink" title="为博客添加文章评论功能"></a>为博客添加文章评论功能</h2><p>此博客文章评论功能是使用 gitment 来实现的。gitment 是一款基于 github issues 的评论系统，以 github 账号登录，评论内容会显示在所有者相应repo 的 issues 中。</p>
+<p>整个过程是这样的：</p>
+<p>博客所有者的 github 账号中注册 OAuth Application。</p>
+<p><img src="/upload/build-blog/new-oauth-app.PNG" alt="新建 OAuth Apps"></p>
+<p><img src="/upload/build-blog/register-app.PNG" alt="注册 OAuth Apps"></p>
+<p>写上应用的名称，重点是“Authorization callback URL”要写对，写网站（你的博客）的域名。注册成功后，可以看到 Client ID 和 Client Secret</p>
+<p><img src="/upload/build-blog/register-success.PNG" alt="注册 OAuth Apps"></p>
+<p>然后使用 npm 安装 gitment 插件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install gitment --save</span><br></pre></td></tr></table></figure></p>
+<p>在 github 中创建一个仓库，这个仓库之后的 issues 放着博客文章的评论。这里我给仓库取名 git-comments</p>
+<p>在 blog/themes/next/_config.yml 中填写相应的配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gitment:</span><br><span class="line">  github_user: xxx # MUST HAVE, Your Github ID</span><br><span class="line">  github_repo: git-comments # MUST HAVE, The repo you use to store Gitment comments</span><br><span class="line">  client_id: xxxxxx # MUST HAVE, Github client id for the Gitment</span><br><span class="line">  client_secret: xxxxxx # EITHER this or proxy_gateway, Github access secret token for the Gitment</span><br></pre></td></tr></table></figure></p>
+<p>这个时候可以看到文章后面已经有了评论的相关功能，但是还处于未初始化状态，需要登录账号去进行初始化，但登录账号会直接进入 xxx.github.io，所以要进行初始化操作，首先将最新的部署到 git 上面，执行 hexo g 和 hexo d。登录成功后点击“初始化”按钮，功成身退。</p>
 
       
     </div>
@@ -399,6 +413,18 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
+          
+            <a href="/tags/git-pages/" rel="tag"># git pages</a>
+          
+            <a href="/tags/blog/" rel="tag"># blog</a>
+          
+            <a href="/tags/git-comment/" rel="tag"># git comment</a>
+          
+        </div>
       
 
       
@@ -514,7 +540,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT, LCSC, js, 前端" />
+  <meta name="keywords" content="hexo,new article," />
 
 
 
@@ -80,13 +80,14 @@
 
 
 <meta name="description" content="在我们博客写一篇新文章">
+<meta name="keywords" content="hexo,new article">
 <meta property="og:type" content="article">
 <meta property="og:title" content="怎么在这里写文章">
 <meta property="og:url" content="http://yoursite.com/2018/01/25/write-new-article/index.html">
 <meta property="og:site_name" content="LCSC">
 <meta property="og:description" content="在我们博客写一篇新文章">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-31T01:41:28.266Z">
+<meta property="og:updated_time" content="2018-01-31T01:55:36.171Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="怎么在这里写文章">
 <meta name="twitter:description" content="在我们博客写一篇新文章">
@@ -381,6 +382,7 @@
 </li>
 </ol>
 <h1 id="文章基本格式"><a href="#文章基本格式" class="headerlink" title="文章基本格式"></a>文章基本格式</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---  // 文章的开头都有这个部分，用来写文章title，文章的标签，文章作者。用“---”隔起来</span><br><span class="line">title: xxx</span><br><span class="line">tags: [tag1, tag2, tag3]  // 为文章打上标签，之后可以在“标签选项中看到”</span><br><span class="line">author: tuffy</span><br><span class="line">---</span><br><span class="line">xxxxx  // 在“---”和“&lt;!-- more --&gt;”之间的是文章的摘要，首页部分显示的是这里的内容，如果不写&lt;!-- more --&gt;会整篇文章都显示在首页</span><br><span class="line"></span><br><span class="line">&lt;!-- more --&gt;  // 以下是正文</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>如果要在文章中放图片的话，在 themes/next/source/upload 中新建你文章的文件夹（一般取跟文章同名）在里面放这篇文章用到的图片，而文章中则以路径 “/upload/article-name/img-name.PNG” 去引用。</p>
 
       
     </div>
@@ -395,6 +397,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
+          
+            <a href="/tags/new-article/" rel="tag"># new article</a>
+          
+        </div>
       
 
       
@@ -510,7 +520,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
