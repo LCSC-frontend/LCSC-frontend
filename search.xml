@@ -3,6 +3,15 @@
   
     
     <entry>
+      <title><![CDATA[test]]></title>
+      <url>/2018/01/31/test/</url>
+      <content type="html"><![CDATA[<p>just a test</p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[gitPage + hexo 搭建博客]]></title>
       <url>/2018/01/29/build-blog/</url>
       <content type="html"><![CDATA[<p>利用 gitPage 和 hexo 搭建一个博客</p>
