@@ -4,6 +4,15 @@
     
     <entry>
       <title><![CDATA[test]]></title>
+      <url>/2018/01/31/test2/</url>
+      <content type="html"><![CDATA[<p>final test</p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[test]]></title>
       <url>/2018/01/31/test1/</url>
       <content type="html"><![CDATA[<p>a test again</p>
 ]]></content>
