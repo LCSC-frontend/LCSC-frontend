@@ -417,7 +417,7 @@
           
 
 
-          
+<!--          
 
   
     <div class="comments" id="comments">
@@ -429,7 +429,22 @@
   
 
 
-
+ -->
+           <div id="container"></div>
+            <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+            <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+            <script>
+                var gitment = new Gitment({
+                    owner: 'LCSC-frontend',
+                    admin: ['tuffy1'],
+                    repo: 'blog-comments',
+                    oauth: {
+                        client_id: '78e08fa667bafe8447b3',
+                        client_secret: '89e2ea317e0879203bd311342f6f121d8c63063d',
+                    },
+                })
+                gitment.render('container’);
+            </script>   
         </div>
         
           
@@ -688,6 +703,7 @@
         var gitment = new Gitmint({
             id: window.location.pathname, 
             owner: 'LCSC-frontend',
+            admin: 'Tuffy1',
             repo: 'blog-comments',
             
             lang: "zh-cn" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
