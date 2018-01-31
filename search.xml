@@ -4,6 +4,15 @@
     
     <entry>
       <title><![CDATA[test]]></title>
+      <url>/2018/01/31/test3/</url>
+      <content type="html"><![CDATA[<p>come on</p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[test]]></title>
       <url>/2018/01/31/test2/</url>
       <content type="html"><![CDATA[<p>final test</p>
 ]]></content>
@@ -77,11 +86,11 @@
         
         <tags>
             
-            <tag> hexo </tag>
-            
             <tag> git pages </tag>
             
             <tag> blog </tag>
+            
+            <tag> hexo </tag>
             
             <tag> git comment </tag>
             
