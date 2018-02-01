@@ -3,6 +3,164 @@
   
     
     <entry>
+      <title><![CDATA[VS Code - Debugger for Chrome（文档中文翻译）]]></title>
+      <url>/2018/01/31/VS-Code-Debugger-for-Chrome%EF%BC%88%E6%96%87%E6%A1%A3%E4%B8%AD%E6%96%87%E7%BF%BB%E8%AF%91%EF%BC%89/</url>
+      <content type="html"><![CDATA[<p>这是VSCode的插件———Debugger for Chrome的中文文档<br><img src="https://cdn-images-1.medium.com/max/1206/1*lCs395mV1NHp_NEtNDwV2A.png" alt="demo"></p>
+<a id="more"></a>
+<h1 id="VS-Code-Debugger-for-Chrome（中文文档）"><a href="#VS-Code-Debugger-for-Chrome（中文文档）" class="headerlink" title="VS Code - Debugger for Chrome（中文文档）"></a>VS Code - Debugger for Chrome（中文文档）</h1><blockquote>
+<p>从VS Code调试在Google Chrome中运行的JavaScript代码。</p>
+</blockquote>
+<p>一个VSCode代码扩展，用于在Google Chrome浏览器或其他支持<a href="https://chromedevtools.github.io/devtools-protocol/" target="_blank" rel="noopener">ChromeDev Tools协议</a>的目标中调试JavaScript代码。</p>
+<p><img src="https://github.com/Microsoft/vscode-chrome-debug/blob/master/images/demo.gif?raw=true" alt="demo"></p>
+<h3 id="支持的特性"><a href="#支持的特性" class="headerlink" title="支持的特性"></a>支持的特性</h3><ul>
+<li><p>设置断点，包括启用源映射（source map）的源文件</p>
+</li>
+<li><p>单步调试，包括Chrome页面上的按钮</p>
+</li>
+<li><p>本地窗格（The Locals pane）</p>
+</li>
+<li><p>调试eval脚本（eval scripts）、脚本标签（script tags）和动态添加的脚本</p>
+</li>
+<li><p>监听</p>
+</li>
+<li><p>控制台（console）</p>
+</li>
+</ul>
+<h4 id="不支持的方案"><a href="#不支持的方案" class="headerlink" title="不支持的方案"></a>不支持的方案</h4><ul>
+<li><p>调试web worker</p>
+</li>
+<li><p>任何不是脚本调试的功能（css、network等） </p>
+</li>
+</ul>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>为了使用Debugger拓展，您首先应该用VSCode打开您的项目。</p>
+<h2 id="使用Debugger"><a href="#使用Debugger" class="headerlink" title="使用Debugger"></a>使用Debugger</h2><p>当启动配置设置完成后，您可以调试您的项目。 在VSCode的调试界面的下拉列表中选择一个启动配置。点击播放按钮或F5以启动。</p>
+<h3 id="配置Debugger"><a href="#配置Debugger" class="headerlink" title="配置Debugger"></a>配置Debugger</h3><p>Debugger有两种运行模式——可以启动一个导航到您的应用程序的Chrome实例（launch模式），或者可以依赖一个正在运行的Chrome实例（attach模式）。 这两种模式都要求您为您的Web应用程序启动一个从Web服务，该服务可以从VSCode任务启动或从命令行启动。使用url参数您就能告诉VSCode哪个url需要在Chrome中打开或启动。</p>
+<h3 id="Launch模式"><a href="#Launch模式" class="headerlink" title="Launch模式"></a>Launch模式</h3><p>在<code>launch.json</code>文件中配置<code>&quot;request&quot;: &quot;launch&quot;</code>时，有两种配置范例。你必须指定一个文件或者url来启动Chrome，该Chrome指向一个本地文件或者一个url。如果你使用一个url，将设置webRoot属性为需要提供服务的文件的路径。它既可以是一个绝对路径，也可以是一个使用${workspaceFolder}（VScode锁打开的文件夹）的路径。webRoot是用来解析url（比如“http：//localhost/app.js”）到磁盘上对应文件（比如“/Users/me/project/app.js”）的属性，需要确保他被正确设置。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"version"</span>: <span class="string">"0.1.0"</span>,</span><br><span class="line">    <span class="attr">"configurations"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"name"</span>: <span class="string">"Launch localhost"</span>,</span><br><span class="line">            <span class="attr">"type"</span>: <span class="string">"chrome"</span>,</span><br><span class="line">            <span class="attr">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">            <span class="attr">"url"</span>: <span class="string">"http://localhost/mypage.html"</span>,</span><br><span class="line">            <span class="attr">"webRoot"</span>: <span class="string">"$&#123;workspaceFolder&#125;/wwwroot"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"name"</span>: <span class="string">"Launch index.html (disable sourcemaps)"</span>,</span><br><span class="line">            <span class="attr">"type"</span>: <span class="string">"chrome"</span>,</span><br><span class="line">            <span class="attr">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">            <span class="attr">"sourceMaps"</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">"file"</span>: <span class="string">"$&#123;workspaceFolder&#125;/index.html"</span></span><br><span class="line">        &#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果您想要使用不同的Chrome浏览器（此处应该指的是使用Chrome的浏览器），则还可以用Chrome浏览器的安装路径设置runtimeExecutable字段。</p>
+<blockquote>
+<p>Chrome用户配置文件备注：通常情况下，如果您以launch配置模式开始调试时，Chrome已经在运行，那么新的实例将不会以远程调试模式启动。 因此，默认情况下，Debugger会在临时文件夹中使用单独的用户配置文件启动Chrome（除非您使用runtimeExecutable字段）。 使用userDataDir启动配置字段可以覆盖或禁用此效果。</p>
+</blockquote>
+<h3 id="Attach模式"><a href="#Attach模式" class="headerlink" title="Attach模式"></a>Attach模式</h3><p>在配置<code>&quot;request&quot;: &quot;attach&quot;</code>时，为了能让Debugger可以附着（attach）到Chrome上，您必须打开远程调试模式来启动Chrome。下面是在不同系统下进行配置：</p>
+<h4 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h4><ul>
+<li><p>右击Chrome图标，选择属性</p>
+</li>
+<li><p>在目标输入框中，追加<code>--remote-debugging-port=9222</code></p>
+</li>
+<li><p>或者在命令提示符中，执行<code>&lt;path to chrome&gt;/chrome.exe --remote-debugging-port=9222</code>命令</p>
+</li>
+</ul>
+<h4 id="macOS"><a href="#macOS" class="headerlink" title="macOS"></a>macOS</h4><ul>
+<li>在终端中，执行<code>/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222</code>命令</li>
+</ul>
+<h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><ul>
+<li>在终端中，运行<code>google-chrome --remote-debugging-port=9222</code>命令</li>
+</ul>
+<p>如果您有一个Chrome实例正在运行并且不想重启它，则可以使用<code>--user-data-dir</code>选项在单独的用户配置文件下运行新实例。例如：<code>--user-data-dir=/tmp/chrome-debug</code>。 这与在launch模式中使用<code>userDataDir</code>选项相同。</p>
+<p>运行Chrome并导航到你的页面。</p>
+<p>下面是一个在attach模式下的<code>launch.json</code>文件示例：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"version"</span>: <span class="string">"0.1.0"</span>,</span><br><span class="line">    <span class="attr">"configurations"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"name"</span>: <span class="string">"Attach"</span>,</span><br><span class="line">            <span class="attr">"type"</span>: <span class="string">"chrome"</span>,</span><br><span class="line">            <span class="attr">"request"</span>: <span class="string">"attach"</span>,</span><br><span class="line">            <span class="attr">"port"</span>: <span class="number">9222</span>,</span><br><span class="line">            <span class="attr">"url"</span>: <span class="string">"&lt;url of the open browser tab to connect to&gt;"</span>,</span><br><span class="line">            <span class="attr">"webRoot"</span>: <span class="string">"$&#123;workspaceFolder&#125;"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"name"</span>: <span class="string">"Attach to url with files served from ./out"</span>,</span><br><span class="line">            <span class="attr">"type"</span>: <span class="string">"chrome"</span>,</span><br><span class="line">            <span class="attr">"request"</span>: <span class="string">"attach"</span>,</span><br><span class="line">            <span class="attr">"port"</span>: <span class="number">9222</span>,</span><br><span class="line">            <span class="attr">"url"</span>: <span class="string">"&lt;url of the open browser tab to connect to&gt;"</span>,</span><br><span class="line">            <span class="attr">"webRoot"</span>: <span class="string">"$&#123;workspaceFolder&#125;"</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="其他目标程序"><a href="#其他目标程序" class="headerlink" title="其他目标程序"></a>其他目标程序</h3><p>理论上，您也可以在同样支持Chrome调试协议的其他目标程序，例如Electron或Cordova中，使用Debugger。这些并非官方支持，但在基本相同的步骤下应该可以运行。您可以通过launch配置将<code>&quot;runtimeExecutable&quot;</code>设置为要启动的程序或脚本，或通过attach配置附着到一个已经运行的进程。 如果VSCode无法找到目标程序，则可以通过在浏览器中导航到<code>http://localhost:&lt;port&gt;/json</code>来始终验证其是否可用。如果你得到了有一堆JSON的响应，并且可以在JSON中找到你的目标页面，那么目标应该可用于这个扩展。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>请阅读我们的wiki页面，那里提供了一些配置过得示例应用：<a href="https://github.com/Microsoft/vscode-chrome-debug/wiki/Examples" target="_blank" rel="noopener">示例</a></p>
+<h3 id="其他可选的launch配置字段"><a href="#其他可选的launch配置字段" class="headerlink" title="其他可选的launch配置字段"></a>其他可选的launch配置字段</h3><ul>
+<li><p><code>trace</code>：如果设置为true，则适配器会将自己的诊断信息记录到文件中。文件路径将打印在调试控制台中。当需要在GitHub上提交issue时，此文件中通常包含有用信息。如果您将其设置为“verbose”，它也会将诊断信息打印到控制台。</p>
+</li>
+<li><p><code>runtimeExecutable</code>：运行可执行文件要使用的的工作空间（Workspace）相对或绝对路径。如果未指定，Chrome将从默认安装位置使用。</p>
+</li>
+<li><p><code>runtimeArgs</code>：传递给运行可执行文件的可选参数。</p>
+</li>
+<li><p><code>env</code>：环境键/值对的可选字典。</p>
+</li>
+<li><p><code>cwd</code>：运行可执行文件的可选工作目录。</p>
+</li>
+<li><p><code>userDataDir</code>：通常情况下，如果您使用launch配置开始进行调试时，Chrome已经在运行，那么新的实例将不会以远程调试模式启动。因此，默认情况下，Debugger会在临时文件夹中使用单独的用户配置文件启动Chrome。使用此选项来设置想要使用的其他路径，或设置为false以使用默认用户配置文件启动。</p>
+</li>
+<li><p><code>url</code>：在launch配置下，将在此url上启动Chrome。</p>
+</li>
+<li><p><code>urlFilter</code>：在attach配置或者没有设置url字段的launch配置的情况下，搜索带有这个url的页面并附着于它。它也可以包含通配符，例如，<code>&quot;localhost:*/app&quot;</code>将匹配<code>&quot;http://localhost:123/app&quot;</code>或<code>&quot;http://localhost:456/app&quot;</code>，但不包含<code>&quot;https://stackoverflow.com&quot;</code>。</p>
+</li>
+<li><p><code>sourceMaps</code>：默认情况下，适配器将尽可能使用源映射（Sourcemaps）和原始源代码。您可以通过将<code>sourceMaps</code>设置为false来禁用此功能。</p>
+</li>
+<li><p><code>pathMapping</code>：此属性将url路径映射到本地路径，以便在如何将url解析为本地文件方面，为您提供更大的灵活性。<code>&quot;webRoot&quot;: &quot;${workspaceFolder}&quot;</code>就是<code>{ &quot;/&quot;: &quot;${workspaceFolder}&quot; }</code>的简写。</p>
+</li>
+<li><p><code>smartStep</code>：自动跨越没有映射到源文件的代码。特别适用于使用async/await进行调试。</p>
+</li>
+<li><p><code>disableNetworkCache</code>：如果为true，网络缓存将被禁用。</p>
+</li>
+<li><p><code>showAsyncStacks</code>：如果为true，跨异步调用（如<code>setTimeout</code>，<code>fetch</code>，解析Promise等）将显示调用堆栈。</p>
+</li>
+</ul>
+<h2 id="跳过-文件-黑箱-忽略文件"><a href="#跳过-文件-黑箱-忽略文件" class="headerlink" title="跳过 文件/黑箱/忽略文件"></a>跳过 文件/黑箱/忽略文件</h2><p>您可以使用<code>skipFiles</code>属性在调试时忽略/黑盒特定的文件。例如，如果您设置了<code>&quot;skipFiles&quot;: [&quot;jquery.js&quot;]</code>，那么您将在单步调试代码时跳过任何名为“jquery.js”的文件。您也不会打断从“jquery.js”中抛出的异常。这与Chrome DevTools中的“黑盒子脚本”相同。</p>
+<p>支持的格式有：</p>
+<ul>
+<li><p>文件名（如<code>jquery.js</code>）</p>
+</li>
+<li><p>文件夹名，将跳过其下所有的脚本（如<code>node_modules</code>）</p>
+</li>
+<li><p>glob路径，跳过所有匹配的脚本（如<code>node_modules/react/*.min.js</code>）</p>
+</li>
+</ul>
+<h2 id="页面刷新"><a href="#页面刷新" class="headerlink" title="页面刷新"></a>页面刷新</h2><p>Debugger还能使您通过在调试界面中点击重启按钮来刷新页面目标。此外，您可以使用以下属性将刷新操作映射到您最喜欢的键盘快捷方式：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"key"</span>: <span class="string">"ctrl+r"</span>,</span><br><span class="line">    <span class="attr">"command"</span>: <span class="string">"workbench.action.debug.restart"</span>,</span><br><span class="line">    <span class="attr">"when"</span>: <span class="string">"inDebugMode"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此处查看更多相关信息<a href="https://github.com/Microsoft/vscode-chrome-debug-core/issues/91#issuecomment-265027348" target="_blank" rel="noopener">https://github.com/Microsoft/vscode-chrome-debug-core/issues/91#issuecomment-265027348</a></p>
+<h2 id="源映射Sourcemaps"><a href="#源映射Sourcemaps" class="headerlink" title="源映射Sourcemaps"></a>源映射Sourcemaps</h2><p>Debugger使用sourcemaps来让你调试你的源代码，但有时sourcemaps不能正确生成并需要覆盖。在配置中，我们支持<code>sourceMapPathOverrides</code>属性。此属性可以设置来自sourcemap的源路径到磁盘上这些源代码路径的映射表。当sourcemap不准确或无法在构建过程中修复时有用。</p>
+<p>映射表的左侧可以包含通配符模式，并将针对源映射中的<code>sourceRoot</code>+<code>sources</code>条目进行测试。如果匹配，则源文件将被解析到映射表右侧的路径，该路径应该是磁盘上源文件的绝对路径。</p>
+<p>默认情况下会使用一些映射，这些影射对应于Webpack和Meteor的默认配置：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">"sourceMapPathOverrides": &#123;</span><br><span class="line">    "webpack:///./~/*": "$&#123;webRoot&#125;/node_modules/*",       // Example: "webpack:///./~/querystring/index.js" -&gt; "/Users/me/project/node_modules/querystring/index.js"</span><br><span class="line">    "webpack:///./*":   "$&#123;webRoot&#125;/*",                    // Example: "webpack:///./src/app.js" -&gt; "/users/me/project/src/app.js",</span><br><span class="line">    "webpack:///*":     "*",                               // Example: "webpack:///C:/project/app.ts" -&gt; "C:/project/app.ts"</span><br><span class="line">    "webpack:///src/*": "$&#123;webRoot&#125;/*",                    // Example: "webpack:///src/App.js" -&gt; "C:/project/src/App.js"</span><br><span class="line">    "meteor://💻app/*": "$&#123;webRoot&#125;/*"                    // Example: "meteor://💻app/main.ts" -&gt; "c:/code/main.ts"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果您在启动配置中设置了<code>sourceMapPathOverrides</code>，则会覆盖上面这些默认设置。<code>${workspaceFolder}</code>和<code>$ {webRoot}</code>可以在这里使用。如果您不能确定映射表左侧是什么，您可以使用<code>.scripts</code>命令（下面有详述）。您也可以使用<code>trace</code>选项来查看sourcemap的内容，或者查看Chrome DevTools中源代码的路径，或者打开<code>.js.map</code>文件并手动检查值。</p>
+<h3 id="Ionic-gulp-sourcemaps注意事项"><a href="#Ionic-gulp-sourcemaps注意事项" class="headerlink" title="Ionic/gulp-sourcemaps注意事项"></a>Ionic/gulp-sourcemaps注意事项</h3><p>Ionic和gulp-sourcemaps默认输出<code>&quot;/source/&quot;</code>的sourceRoot。 如果你不能通过你的构建配置来解决这个问题，我建议如下设置：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"sourceMapPathOverrides": &#123;</span><br><span class="line">    "/source/*": "$&#123;workspaceFolder&#125;/*"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="故障排除Troubleshooting"><a href="#故障排除Troubleshooting" class="headerlink" title="故障排除Troubleshooting"></a>故障排除Troubleshooting</h2><h3 id="我的断点不能命中。-怎么了？"><a href="#我的断点不能命中。-怎么了？" class="headerlink" title="我的断点不能命中。 怎么了？"></a>我的断点不能命中。 怎么了？</h3><p>如果你的断点没有被触发，这很可能是sourcemapping问题，或者是因为你在立即执行的代码中有断点。例如，如果您在页面加载时运行的渲染函数中有断点，则在代码执行之前，Debugger可能未能附加到Chrome。这意味在VSCode附着到你打的断点后，你必须刷新Chrome中的页面。 我们正在通过<a href="https://github.com/Microsoft/vscode-chrome-debug/issues/445" target="_blank" rel="noopener">https://github.com/Microsoft/vscode-chrome-debug/issues/445</a>中的“中断加载”断点来简化这个过程，这将使这个和时机有关的问题变得明晰。</p>
+<p>如果您有sourcemapping问题，请参阅<a href="https://github.com/Microsoft/vscode-chrome-debug#sourcemaps" target="_blank" rel="noopener">https://github.com/Microsoft/vscode-chrome-debug#sourcemaps</a></p>
+<h3 id="无法连接到目标：connect-CONNREFUSED-127-0-0-1-9222"><a href="#无法连接到目标：connect-CONNREFUSED-127-0-0-1-9222" class="headerlink" title="无法连接到目标：connect CONNREFUSED 127.0.0.1:9222"></a>无法连接到目标：connect CONNREFUSED 127.0.0.1:9222</h3><p>此消息表示扩展程序无法附着到Chrome，因为Chrome未在调试模式下启动。请做如下尝试：</p>
+<ul>
+<li><p>如果使用<code>attach</code>类型配置，请确保您使用<code>--remote-debugging-port=9222</code>启动了Chrome。如果已经有一个正在运行的实例，请参阅上文的内容。</p>
+</li>
+<li><p>确保<code>port</code>属性与Chrome正在侦听的远程调试连接的端口匹配。默认是<code>9222</code>端口。确保没有别的应用程序使用这个端口，包括你的网络服务器。如果您的计算机上的其他内容以<code>http://localhost:9222</code>响应，请设置其他端口。</p>
+</li>
+<li><p>如果一切都失败了，当你看到此信息时，请尝试在浏览器中浏览<code>http://localhost:&lt;port&gt;/json</code>，如果没有响应，则在Debugger的上游出现了错误。如果返回了一个JSON页面，请确保launch配置中的<code>port</code>与该url中的端口匹配。</p>
+</li>
+<li><p>如果在显式禁用<code>userDataDir</code>选项的情况下使用<code>launch</code>类型配置，请关闭其他正在运行的Chrome实例 - 如果Chrome已在运行，则在使用launch模式时，Debugger可能无法附着。 Chrome甚至可以在所有窗口关闭的情况下保持在后台运行，这会造成干扰——检查任务栏并在必要时终止进程。</p>
+</li>
+</ul>
+<h3 id="如果你有问题，一般要尝试的事项："><a href="#如果你有问题，一般要尝试的事项：" class="headerlink" title="如果你有问题，一般要尝试的事项："></a>如果你有问题，一般要尝试的事项：</h3><ul>
+<li><p>如果需要，确保<code>webRoo</code>t设置正确</p>
+</li>
+<li><p>仔细看看你的sourcemap配置。sourcemap有一个源文件的路径，Debugger使用该路径来查找磁盘上的原始源文件。检查sourcemap中的<code>sourceRoot</code>和<code>sources</code>属性，并确保它们可以与启动配置中的<code>webRoot</code>属性组合，以构建原始源文件的正确路径。</p>
+</li>
+<li><p>Debugger忽略sourcemap中内联源代码模式——您有可能在Chrome Dev Tools中使用此模式，但Debugger不支持，因为路径不正确，但Chrome Dev Tools正在读取内联的源内容。</p>
+</li>
+<li><p>当Debugger无法附着时，有时可以查看Debugger在控制台打印的警告。</p>
+</li>
+<li><p>确保Chrome中的代码与VSCode中的代码相符。Chrome可能会缓存旧版本代码。</p>
+</li>
+<li><p>如果您的断点绑定，但没有命中，请尝试刷新页面。如果您在页面加载时立即运行的代码中设置断点，则在刷新页面之前，该断点不能被命中。</p>
+</li>
+<li><p>在Debugger的<a href="https://github.com/Microsoft/vscode-chrome-debug" target="_blank" rel="noopener">GitHub仓库</a>中提交bug，要包括调试适配器日志文件。通过在launch配置中设置“跟踪”字段并重现问题来创建日志文件。在Debug Console的顶部将打印日志文件的路径。您可以将此文件拖到issue评论中，以将其上传到GitHub。</p>
+</li>
+</ul>
+<h3 id="script命令"><a href="#script命令" class="headerlink" title=".script命令"></a><code>.script</code>命令</h3><p>此功能对于了解Debugger如何将工作区中的文件映射到Chrome中运行的文件非常有用。您可以在 Debug Console中输入.scripts，以查看运行时加载的所有脚本的列表，它们的sourcemap信息，以及它们如何映射到磁盘上的文件。格式是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">› &lt;The exact URL for a script, reported by Chrome&gt; (&lt;The local path that has been inferred for this script, using webRoot, if applicable&gt;)</span><br><span class="line">    - &lt;The exact source path from the sourcemap&gt; (&lt;The local path inferred for the source, using sourceMapPathOverrides, or webRoot, etc, if applicable&gt;)</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.scripts</span><br><span class="line">› eval://43</span><br><span class="line">› http://localhost:8080/index.html (/Users/me/project/wwwroot/index.html)</span><br><span class="line">› http://localhost:8080/out/test1.js (/Users/me/project/wwwroot/out/test1.js)</span><br><span class="line">    - /src/test1a.ts (/Users/me/project/wwwroot/src/test1a.ts)</span><br><span class="line">    - /src/test1b.ts (/Users/me/project/wwwroot/src/test1b.ts)</span><br><span class="line">    - /src/test1c.ts (/Users/me/project/wwwroot/src/test1c.ts)</span><br><span class="line">› http://localhost:8080/out/test2.js (/Users/me/project/wwwroot/out/test2.js)</span><br><span class="line">    - /src/test2.ts (/Users/me/project/wwwroot/src/test2.ts)</span><br></pre></td></tr></table></figure>
+<p>如果你想知道一个脚本是什么，例如那个’eval’脚本，你也可以使用<code>.scripts</code>来获取它的内容：<code>.scripts eval://43</code>。</p>
+<p>===此项目采用了<a href="https://opensource.microsoft.com/codeofconduct/" target="_blank" rel="noopener">微软开放源代码行为准则</a>。 欲了解更多信息，请参阅行为<a href="https://opensource.microsoft.com/codeofconduct/faq/" target="_blank" rel="noopener">准则常见问题</a>或联系<a href="https://github.com/Microsoft/vscode-chrome-debug/blob/master/mailto:opencode@microsoft.com" target="_blank" rel="noopener">opencode@microsoft.com</a>与任何其他问题或意见。</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> visual studio code </tag>
+            
+            <tag> chrome </tag>
+            
+            <tag> debugger plugin </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[gitPage + hexo 搭建博客]]></title>
       <url>/2018/01/29/build-blog/</url>
       <content type="html"><![CDATA[<p>利用 gitPage 和 hexo 搭建一个博客</p>
